@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import Error from './Error';
 import { SessionButton } from './buttons'; 
 import { newUserDisplay, existingUserDisplay } from './displays';
@@ -8,42 +8,44 @@ import './Session.css';
 import {
     signIn, 
     signUp, 
-    updateSessionFormPassword, 
-    updateSessionFormUsername
 } from '../../redux/actions';
 
 class Session extends React.Component {
-    url = this.props.location.pathname;
-    getDisplay = () => (
-        this.url === '/signup' ? newUserDisplay() : existingUserDisplay()
-    )
+    state = {username: '', password: ''};
+
+    getDisplay = () => {
+        const url = this.props.location.pathname
+        return url === '/signup' ? newUserDisplay() : existingUserDisplay()
+    }
 
     handleChange = (e) => {
-        const { name } = e.currentTarget;
-        const {updateUsername, updatePassword} = this.props;
-        if (name === 'username') {
-            updateUsername(e.target.value);
-        } else {
-            updatePassword(e.target.value);
-        }
+        const { name, value } = e.currentTarget;
+        this.setState({[name]: value});
     }
 
     handleSubmit = async (e) => {
         e.preventDefault();
         const {signIn, signUp} = this.props;
-        this.url === '/signin' ? signIn()  : signUp();
+        const data = this.state;
+        this.url === '/signin' ? signIn(data)  : signUp(data);
+    }
+
+    ready = () => {
+        const {username, password} = this.state;
+        return username && password;
     }
 
     render() {
-        const { errorMsg, loggedIn, username, password, ready } = this.props;
-        const { handleSubmit, handleChange, getDisplay } = this;
+        const { errorMsg, loggedIn } = this.props;
+        const { handleSubmit, handleChange } = this;
+        const { username, password } = this.state;
         return loggedIn ? <Redirect to="/"/> : (
             <div className="Session">
                 <div className="SessionHeader">
-                    <h2>SkyCast</h2>
+                    <h2><a href="#/">SkyCast</a></h2>
                 </div>
                 <div className="SessionMain">
-                    {getDisplay()}
+                    {this.getDisplay()}
                     <form action="post" onSubmit={handleSubmit}>
                         <div className="SessionMainLabel"><b>Username</b></div>
                         <input 
@@ -69,7 +71,7 @@ class Session extends React.Component {
                                 {errorMsg}
                             </Error>
                         </div>
-                        <SessionButton enabled={ready} msg="Submit" />
+                        <SessionButton enabled={this.ready()} msg="Submit" />
                         </div>
                     </form>
                 </div>
@@ -86,7 +88,6 @@ const mapStateToProps = state => {
         loggedIn: !!state.session.username, 
         username: state.sessionForm.username,
         password: state.sessionForm.password,
-        ready: state.sessionForm.ready,
     }
 }
 
@@ -102,22 +103,7 @@ const mapDispatchToProps = dispatch => {
             const user = {username, password };
             return dispatch(signUp(user));
         },
-        updateUsername: (username) => dispatch(updateSessionFormUsername(username)),
-        updatePassword: (password) => dispatch(updateSessionFormPassword(password)),
     }
 }
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    return {...stateProps, ...dispatchProps, ...ownProps,
-        signIn: () => {
-            const {username, password} = stateProps;
-            dispatchProps.signIn({username, password});
-        },
-        signUp: () => {
-            const {username, password} = stateProps;
-            dispatchProps.signUp({username, password});
-        },
-    }
-  }
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Session);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Session));

@@ -9,7 +9,7 @@ import './Home.css';
 //     updateSessionFormPassword, 
 //     updateSessionFormUsername
 // } from '../../redux/actions';
-
+import Autocomplete from './AutocompleteForm';
 class Home extends React.Component {
     url = this.props.location.pathname;
 
@@ -17,6 +17,7 @@ class Home extends React.Component {
         const { loggedIn, username, queries } = this.props;
         return (
             <div className="Home">
+                <Autocomplete />
                 <h2>Hello {username}</h2>
                 {queries.map((q, i) => {
                     return (
