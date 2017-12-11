@@ -11,7 +11,7 @@ import {
 } from './reducers/home-reducer';
 
 const ADD_QUERY = 'ADD_QUERY';
-
+const RECEIVE_DATA = 'RECEIVE_DATA';
 export const updateSessionFormUsername = username => {
     return {
         type: UPDATE_SESSION_FORM_USERNAME,
@@ -83,7 +83,7 @@ export const postQuery = query => async dispatch => {
 
 
 export const setLocation = location => {
-    // this might become a thunk
+    // this might become a thunk which deals with the data
     return {
         type: SET_LOCATION,
         location
@@ -98,3 +98,20 @@ export const addQuery = query => {
     }
 }
 
+export const receiveData = (data, query) => {
+    return {
+        type: RECEIVE_DATA,
+        data,
+        query,
+    };
+}
+
+export const fetchCurrentWeather = query => async dispatch => {
+    try {
+        let response = await $.fetchWeather(query);
+        dispatch(receiveData(response.data, query));
+    } catch (err) {
+        console.log(err)
+        return;
+    }
+}

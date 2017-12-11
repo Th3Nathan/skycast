@@ -22,3 +22,7 @@ export const logout = () => {
 export const postQuery = (query) => {
     return $.post(url + 'addquery', (queryString.stringify(query)));
 };
+
+export const fetchWeather = (latLng) => {
+    return $.post(url + 'weather', (queryString.stringify(latLng)));
+};

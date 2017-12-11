@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './Home.css';
 import HomeHeader from './HomeHeader';
+import Skycons from 'react-skycons';
+import WeatherNow from './WeatherNow';
+
+
 class Home extends React.Component {
 
     render() {
@@ -15,7 +19,7 @@ class Home extends React.Component {
                 <h2>Hello</h2>
                 <h2>Hello</h2>
                 <h2>Hello</h2>
-               
+                <WeatherNow />
                 <h1>Current Location is {this.props.location.name}</h1>
                 <h1>With lat and long of {this.props.location.latitude} {this.props.location.longitude}</h1>
             </div>

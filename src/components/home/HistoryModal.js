@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ReactModal from 'react-modal';
 import './HistoryModal.css';
-import {setLocation} from '../../redux/actions';
+import {setLocation, fetchCurrentWeather} from '../../redux/actions';
 import { connect } from 'react-redux';
 
 class HistoryModal extends React.Component {
@@ -19,7 +19,8 @@ class HistoryModal extends React.Component {
     constructList = () => {
         const action = query => () => {
             this.props.close();
-            this.props.setLocation(query)
+            this.props.fetchCurrentWeather(query)
+            
         }
         return this.props.queries.map((query, idx) => {
             return (
@@ -65,7 +66,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    setLocation: (query) => dispatch(setLocation(query))
+    setLocation: (query) => dispatch(setLocation(query)),
+    fetchCurrentWeather: (query) => dispatch(fetchCurrentWeather(query)),
 });
 
 

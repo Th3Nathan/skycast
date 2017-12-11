@@ -2,7 +2,7 @@ import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { addQuery, setLocation, postQuery } from '../../redux/actions';
+import { addQuery, setLocation, postQuery, fetchCurrentWeather } from '../../redux/actions';
 import './Autocomplete.css';
 class Autocomplete extends React.Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Autocomplete extends React.Component {
         } else {
           this.props.addQuery(query);
         }
-        this.props.setLocation(query);
+        this.props.fetchCurrentWeather(query);
         console.log('Success', latLng)})
       .catch(error => console.error('Error', error))
   }
@@ -104,6 +104,7 @@ const mapDispatchToProps = dispatch => {
         addQuery: query => dispatch(addQuery(query)),
         postQuery: query => dispatch(postQuery(query)),
         setLocation: query => dispatch(setLocation(query)),
+        fetchCurrentWeather: (query) => dispatch(fetchCurrentWeather(query)),
     }
 }
 
