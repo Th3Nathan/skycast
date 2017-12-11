@@ -4,6 +4,42 @@
     font-weight: 600;
     color: white;
     cursor: pointer;
-    margin-right: 45px;
+    position: relative;
 }
 
+.PreviousSearches {
+    position: relative;
+    padding: 3px;
+}
+
+.HistoryListWrap {
+    font-size: 13px;
+    color: white;
+    position: relative;
+    top: 13px;
+    right: -140px;
+    width: 200px;
+    cursor: pointer;
+}
+
+.HistoryList {
+    background: #9ED0E6;
+    list-style-type: none;
+    border-radius: 4px;
+    top: 23px;
+    left: -28px;
+    position: absolute;
+    padding: 0px 0px 10px 0px;
+}
+
+.HistoryItem {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 7px 15px;
+}
+
+.HistoryItem:hover {
+    background: black;
+    border-radius: 10px;
+}

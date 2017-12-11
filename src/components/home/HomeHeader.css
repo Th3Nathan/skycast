@@ -1,7 +1,7 @@
 .HomeHeader {
     position: fixed;
     height: 75px;
-    background: #3437d4;
+    background: #00B2CA;
     width: 100%;
     top: 0;
     left: 0;
@@ -12,7 +12,6 @@
     display: flex;
     justify-content: space-between;
     margin: auto;
-    max-width: 1200px;
     height: 100%;
 }
 
@@ -27,6 +26,7 @@
     height: 100%;
     padding: 0px 15px;
     margin-right: 40px;
+    user-select: none;
 }
 
 .HomeHeaderLeft {

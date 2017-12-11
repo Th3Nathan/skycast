@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './HomeHeader.css';
 import Autocomplete from './Autocomplete';
-import HistoryModal from './HistoryModal';
 import PreviousSearches from './PreviousSearches';
 import HeaderAuth from './HeaderAuth';
 
@@ -37,8 +36,8 @@ class HomeHeader extends React.Component {
                         <div className="HomeHeaderTitleBox">
                             <h1 className="HomeHeaderTitle">SkyCast</h1>
                         </div>
-                        <PreviousSearches searches={queries} />
                         <Autocomplete />
+                        <PreviousSearches searches={queries} />
                     </div>
                     <HeaderAuth />
                 </div>

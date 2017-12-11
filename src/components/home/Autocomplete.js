@@ -42,7 +42,7 @@ class Autocomplete extends React.Component {
         } else {
           this.props.addQuery(query);
         }
-        this.props.fetchCurrentWeather(query);
+        // this.props.fetchCurrentWeather(query);
         console.log('Success', latLng)})
       .catch(error => console.error('Error', error))
   }
@@ -63,9 +63,9 @@ class Autocomplete extends React.Component {
   render() {
     const myStyles = {
       root: { position: 'absolute', top: '20px' },
-      input: { width: '100%', fontSize: '17px' },
-      autocompleteContainer: { width: '100%' },
-      autocompleteItem: { color: 'black', fontSize: '15px' },
+      input: { width: '224px', fontSize: '17px' },
+      autocompleteContainer: { width: '224px', margin: '0', padding: '0', border: 'none' },
+      autocompleteItem: { width: '224px', color: 'black', fontSize: '15px' },
       autocompleteItemActive: { color: '#3437d4' },
       googleLogoContainer: {display: 'none'}
     }

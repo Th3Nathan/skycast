@@ -4,6 +4,22 @@ import Skycons from 'react-skycons';
 import { connect } from 'react-redux';
 import './WeatherNow.css';
 class WeatherNow extends React.Component {
+
+    mapHoursToBackground = (hours) => {
+        const colors = ['#81b4e4', '#5FA0DD', '#1b4e7e', '#091a2a'];
+        debugger
+        if (hours >= 22 || hours <= 3) {
+            return {background: colors[3]};
+        } else if (hours >= 19 || hours <= 6) {
+            return {background: colors[2]};
+        } else if (hours >= 16 || hours <= 9) {
+            return {background: colors[1]};
+        } else {
+            return {background: colors[0]};
+        }
+
+    }
+
     formatIconName = (name) => {
         return name.toUpperCase().replace('-', '_');
     }
@@ -12,11 +28,12 @@ class WeatherNow extends React.Component {
         if (!this.props.json) return null;
         let json = this.props.json;
         let now = new Moment(json.currently.time);
+        let timeBackgroundStyle = this.mapHoursToBackground(parseInt(now.format('HH')));
         let datestring = "as of " + now.format('h:mm:ss a');
         
         return (
             <div className="WeatherNow">
-                <div className="WeatherNowBox">
+                <div style={timeBackgroundStyle} className="WeatherNowBox">
                     <div className="WeatherNowHeader">
                         <h2 className="WeatherNowHeaderPlace">{this.props.name}</h2>
                         <h2 className="WeatherNowHeaderTime">{datestring}</h2>
@@ -33,7 +50,7 @@ class WeatherNow extends React.Component {
                         </div>
                         <div className="WeatherNowIcon">
                         <Skycons 
-                            color='black' 
+                            color='white' 
                             icon={this.formatIconName(this.formatIconName(json.currently.icon))} 
                             autoplay={false}
                             />

@@ -13,12 +13,12 @@ class HeaderAuth extends React.Component {
             return (
                 <div className="HeaderAuth">
                     <h4>Hi {username}!</h4>
-                    <h4 onClick={logout}>Log out</h4>
+                    <h4 style={{cursor: 'pointer'}} onClick={logout}>Log out</h4>
                 </div>
             );
         } else {
             return (
-                <div className="HeaderAuth">
+                <div className="HeaderAuth HeaderAuthNotLoggedIn">
                     <h4><a href="#/signin">Log In</a></h4>
                     <h4><a href="#/signup">Sign Up</a></h4>
                 </div>

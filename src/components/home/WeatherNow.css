@@ -3,6 +3,8 @@
     width: 490px;
     height: 280px;
     font-size: 14px;
+    color: white;
+    font-family: sans-serif;
 }
 
 .WeatherNowBox {
@@ -12,6 +14,10 @@
 
 .WeatherNowStats {
     width: 140px;
+    color: black;
+    background: #EDEDED;
+    margin-left: 10px;
+
 }
 
 .WeatherNowHeader {
@@ -28,6 +34,7 @@
     margin-top: 3px;
     font-size: 16px;
     margin-bottom: 2px;
+    opacity: 0.7;
 }
 
 .WeatherNowTempIcon {
@@ -83,18 +90,25 @@
 
 .WeatherNowStatsHeader {
     padding: 7px;
-    font-size: 19px;
-    font-weight: bold;    
+    font-size: 18px;
+    font-weight: 600;    
     margin-bottom: -5px;
 }
 
 .WeatherNowStatsItem {
-    padding: 7px;
-    margin-bottom: -7px;
+    margin: 7px 10px;
+    padding-bottom: 3px;
+    border-bottom: .1px solid rgb(77, 74, 74);
+}
+
+.WeatherNowStatsItem:last-of-type {
+    margin: 7px;
+    padding-bottom: 3px;
+    border-bottom: none;
 }
 
 .WeatherNowStatsItemTitle {
     font-weight: bold;
-    font-size: 17px;
+    font-size: 16px;
     margin-bottom: 4px;
 }
