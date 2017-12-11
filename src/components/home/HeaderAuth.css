@@ -1,0 +1,18 @@
+.HeaderAuth {
+    display: flex;
+    font-size: 18px;
+    color: white;
+    justify-content: space-between;
+    width: 200px;
+    padding-top: 5px;
+}
+
+.HeaderAuth a {
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+}
+
+.HeaderAuth a:hover {
+    text-decoration: none;
+}

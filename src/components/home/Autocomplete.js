@@ -1,16 +1,18 @@
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import axios from 'axios';
-class AutocompleteForm extends React.Component {
+import { connect } from 'react-redux';
+import { addQuery, setLocation, postQuery } from '../../redux/actions';
+import './Autocomplete.css';
+class Autocomplete extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { address: 'San Francisco, CA' }
+    this.state = { address: '' }
     this.onChange = (address) => this.setState({ address })
   }
 
-  handleFormSubmit = (event) => {
-    event.preventDefault()
-
+  handleFormSubmit = (address) => {
+    this.setState({address});
     geocodeByAddress(this.state.address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
@@ -34,9 +36,13 @@ class AutocompleteForm extends React.Component {
         // a user logs in, first submit all queries to the database, then download all queries for user,
         // let database handle uniqueness and stuff in scope of user id... a later step
         // a user logs out, change nothing
-
-
-
+        let query = {...latLng, name: this.state.address};
+        if (this.props.loggedIn) {
+          this.props.postQuery(query);
+        } else {
+          this.props.addQuery(query);
+        }
+        this.props.setLocation(query);
         console.log('Success', latLng)})
       .catch(error => console.error('Error', error))
   }
@@ -55,32 +61,51 @@ class AutocompleteForm extends React.Component {
   }
 
   render() {
+    const myStyles = {
+      root: { position: 'absolute', top: '20px' },
+      input: { width: '100%', fontSize: '17px' },
+      autocompleteContainer: { width: '100%' },
+      autocompleteItem: { color: 'black', fontSize: '15px' },
+      autocompleteItemActive: { color: '#3437d4' },
+      googleLogoContainer: {display: 'none'}
+    }
+  
     const inputProps = {
       value: this.state.address,
+      placeholder: 'Enter a location',
       onChange: this.onChange,
     }
-
+    const AutocompleteItem = ({ suggestion }) => (<button onClick={this.handleFormSubmit} type="submit"><i className="fa fa-map-marker"/>{suggestion}</button>)
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <PlacesAutocomplete inputProps={inputProps} />
-        <button type="submit">Submit</button>
-        <div onClick={this.handleClick}>Try me!</div>
-      </form>
+      <div className="Autocomplete">
+        <i className="fa fa-search" aria-hidden="true"></i>
+        <form onSubmit={this.handleFormSubmit}>
+        
+          <PlacesAutocomplete 
+              inputProps={inputProps} 
+              onSelect={this.handleFormSubmit} 
+              styles={myStyles} 
+              />
+        </form>
+      </div>
     )
   }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         loggedIn: !!state.session.username,
-//     }
-// }
+const mapStateToProps = state => {
+    return {
+        queries: !!state.queries.userQueries,
+        loggedIn: !!state.session.username,
+    }
+}
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         addSearch: data => dispatch(addSearch(data)),
-//         saveSearch: data => dispatch(createSearch(data)),
-//     }
-// }
+const mapDispatchToProps = dispatch => {
+    return {
+        addQuery: query => dispatch(addQuery(query)),
+        postQuery: query => dispatch(postQuery(query)),
+        setLocation: query => dispatch(setLocation(query)),
+    }
+}
 
-export default AutocompleteForm
+
+export default connect(mapStateToProps,mapDispatchToProps)(Autocomplete);

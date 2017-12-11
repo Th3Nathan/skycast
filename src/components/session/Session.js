@@ -27,7 +27,8 @@ class Session extends React.Component {
         e.preventDefault();
         const {signIn, signUp} = this.props;
         const data = this.state;
-        this.url === '/signin' ? signIn(data)  : signUp(data);
+        const url = this.props.location.pathname
+        url === '/signin' ? signIn(data)  : signUp(data);
     }
 
     ready = () => {
@@ -94,14 +95,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         signIn: (data) => {
-            const {username, password} = data;
-            const user = {username, password };
-            return dispatch(signIn(user));
+            return dispatch(signIn(data));
         },
         signUp: (data) => {
-            const {username, password} = data;
-            const user = {username, password };
-            return dispatch(signUp(user));
+            return dispatch(signUp(data));
         },
     }
 }

@@ -1,30 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-// import { SessionButton } from './buttons'; 
 import './Home.css';
-// import {
-//     signIn, 
-//     signUp, 
-//     updateSessionFormPassword, 
-//     updateSessionFormUsername
-// } from '../../redux/actions';
-import Autocomplete from './AutocompleteForm';
+import HomeHeader from './HomeHeader';
 class Home extends React.Component {
-    url = this.props.location.pathname;
 
     render() {
         const { loggedIn, username, queries } = this.props;
         return (
             <div className="Home">
-                <Autocomplete />
-                <h2>Hello {username}</h2>
-                {queries.map((q, i) => {
-                    return (
-                        <div>{q.name}</div>
-                    );
-                })}    
-            
+                <HomeHeader queries={queries} />
+                <h2>Hello</h2>
+                <h2>Hello</h2>
+                <h2>Hello</h2>
+                <h2>Hello</h2>
+                <h2>Hello</h2>
+               
+                <h1>Current Location is {this.props.location.name}</h1>
+                <h1>With lat and long of {this.props.location.latitude} {this.props.location.longitude}</h1>
             </div>
         );
     }
@@ -33,11 +26,11 @@ class Home extends React.Component {
 // // Redux 
 
 const mapStateToProps = state => {
-    debugger
     return {
         loggedIn: !!state.session.username, 
         username: state.sessionForm.username,
         queries: state.queries.userQueries || [],
+        location: state.home.location,
     }
 }
 

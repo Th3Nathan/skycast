@@ -14,3 +14,11 @@ export const signUp = ({username, password}) => {
 export const signIn = ({username, password}) => {
     return $.post(url + 'signin', (queryString.stringify({ username, password})));
 };
+
+export const logout = () => {
+    return $.get(url + 'logout');
+};
+
+export const postQuery = (query) => {
+    return $.post(url + 'addquery', (queryString.stringify(query)));
+};

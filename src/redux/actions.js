@@ -6,6 +6,12 @@ import {
     RECEIVE_USER,
 } from './reducers/session-form-reducer';
 
+import {
+    SET_LOCATION
+} from './reducers/home-reducer';
+
+const ADD_QUERY = 'ADD_QUERY';
+
 export const updateSessionFormUsername = username => {
     return {
         type: UPDATE_SESSION_FORM_USERNAME,
@@ -54,3 +60,41 @@ export const signUp = data => async dispatch => {
         return;
     }
 }
+
+export const logout = () => async dispatch => {
+    try {
+        let response = await $.logout();
+        dispatch(receiveUser({username: null, id: null}));
+    } catch (err) {
+        console.log(err)
+        return;
+    }
+}
+
+export const postQuery = query => async dispatch => {
+    try {
+        let response = await $.postQuery(query);
+        dispatch(addQuery(query));
+    } catch (err) {
+        console.log(err)
+        return;
+    }
+}
+
+
+export const setLocation = location => {
+    // this might become a thunk
+    return {
+        type: SET_LOCATION,
+        location
+    }
+}
+
+export const addQuery = query => {
+    // this might become a thunk
+    return {
+        type: ADD_QUERY,
+        query,
+    }
+}
+
