@@ -1,0 +1,28 @@
+table {
+    border-collapse: collapse;
+}
+
+th {
+    padding: 10px;
+    background: #1D4E89;
+    margin: 0px;
+    color: white;
+ 
+    position: relative;
+    box-sizing: border-box;
+}
+
+tr, td {
+    background: #9ED0E6;
+    box-sizing: border-box;
+
+   
+}
+
+tr {
+    border-bottom: 2px solid #00B2CA;
+}
+
+tr:last-of-type {
+    border-bottom: none;
+}

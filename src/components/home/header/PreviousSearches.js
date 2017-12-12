@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './PreviousSearches.css';
-import { setLocation, fetchCurrentWeather } from './../../redux/actions';
+import { setLocation, fetchCurrentWeather } from '../../../redux/actions';
 
 class PreviousSearches extends React.Component {
     state = {listShowing: true};

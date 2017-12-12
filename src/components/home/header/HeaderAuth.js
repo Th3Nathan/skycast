@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './HeaderAuth.css';
-import { logout } from '../../redux/actions';
+import { logout } from '../../../redux/actions';
 
 
 class HeaderAuth extends React.Component {
