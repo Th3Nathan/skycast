@@ -1,8 +1,18 @@
 import axios from 'axios';
 import queryString from 'query-string';
+import moment from 'moment';
 
 const localUrl = "http://localhost:8080/";
 const url = localUrl;
+
+let monthlyStamps = [
+    moment().subtract(31, 'day').unix(),
+    moment().subtract(23, 'day').unix(),
+    moment().subtract(15, 'day').unix(),
+    moment().subtract(7, 'day').unix()
+]
+
+let lastWeek = moment().subtract(7, 'day');
 
 const $ = axios.create({withCredentials: true});
 

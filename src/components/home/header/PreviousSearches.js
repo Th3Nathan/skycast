@@ -8,6 +8,7 @@ class PreviousSearches extends React.Component {
     constructList = () => {
         const action = query => () => {
             this.props.fetchCurrentWeather(query)
+            this.setState({listShowing: false});
         }
         return this.props.queries.map((query, idx) => {
             // onClick={action(query)}
@@ -22,7 +23,8 @@ class PreviousSearches extends React.Component {
 
     render() {
         const {queries} = this.props;
-        const style = this.state.listShowing ? {display: 'none'} : {display: 'block'};
+        const {listShowing} = this.state;
+        const style = {display: (listShowing ? 'block' : 'none')};
         return (
             <div className="PreviousSearches">
                 <div className="HistoryListWrap">

@@ -43,15 +43,6 @@ class Autocomplete extends React.Component {
             placeholder: 'Enter a location',
             onChange: this.onChange,
         }
-        const AutocompleteItem = ({ suggestion }) => (
-            <button 
-                onClick={this.handleFormSubmit} 
-                type="submit"
-            >
-                <i className="fa fa-map-marker"/>
-                {suggestion}
-            </button>
-        )
         return (
             <div className="Autocomplete">
                 <i className="fa fa-search" aria-hidden="true"></i>
@@ -69,7 +60,6 @@ class Autocomplete extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        queries: !!state.queries.userQueries,
         loggedIn: !!state.session.username,
     }
 }

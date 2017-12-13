@@ -20,7 +20,7 @@ class Home extends React.Component {
         const { setTableType, getStyle } = this;
         return (
             <div className="Home">
-                <HomeHeader queries={queries} />
+                <HomeHeader />
                 <WeatherNow />
                 <div className="HomeToggleTableButtonWrap">
                     <div 

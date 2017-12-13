@@ -17,7 +17,6 @@ class WeatherNow extends React.Component {
         } else {
             return {background: colors[0]};
         }
-
     }
 
     formatIconName = (name) => {
@@ -71,7 +70,7 @@ class WeatherNow extends React.Component {
                             Precipitation
                         </div>
                         <div className="WeatherNowStatsItemData">
-                            %{json.currently.precipProbability}
+                            {json.currently.precipProbability}%
                         </div>
                     </div>
                     <div className="WeatherNowStatsItem">
@@ -87,7 +86,7 @@ class WeatherNow extends React.Component {
                             Humidity
                         </div>
                         <div className="WeatherNowStatsItemData">
-                            %{Math.floor(json.currently.humidity * 100)}
+                            {Math.floor(json.currently.humidity * 100)}%
                         </div>
                     </div>
                     <div className="WeatherNowStatsItem">
