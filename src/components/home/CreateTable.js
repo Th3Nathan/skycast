@@ -1,9 +1,7 @@
 import React from 'react';
-import moment from 'moment';
-import Skycons from 'react-skycons';
 import json from '../../weather.js';
 import {
-    time,
+    title,
     description,
     temperature,
     feels,
@@ -18,7 +16,7 @@ import './CreateTable.css';
 
 class CreateTable extends React.Component {
     hourly = [
-        {func: time, field: 'Time'}, 
+        {func: title('hourly'), field: 'Time'}, 
         {func: description, field: 'Description'}, 
         {func: temperature, field: 'Temp'}, 
         {func: feels, field: 'Feels'}, 
@@ -27,19 +25,19 @@ class CreateTable extends React.Component {
         {func: wind, field: 'Wind'},
     ];
     daily = [
-        {func: day, field: 'Day'}, 
+        {func: title('daily'), field: 'Day'}, 
         {func: description, field: 'Description'}, 
         {func: highLow, field: 'High/Low'}, 
         {func: precipitation, field: 'Precip'},    
         {func: wind, field: 'Wind'},
         {func: humidity, field: 'Humidity'}, 
     ];
-    fiveDays = json.daily.data.slice(0, 12);
-    twentyFourHours = json.hourly.data.slice(0, 12);
+    daysData = json.daily.data.slice(0, 12);
+    hoursData = json.hourly.data.slice(0, 12);
     
     construct = () => {
         let format = this.props.type === 'hourly' ? this.hourly : this.daily;
-        let data = this.props.type === 'hourly' ? this.twentyFourHours : this.fiveDays;
+        let data = this.props.type === 'hourly' ? this.hoursData : this.daysData;
         let header = (
             <tr>
                 {format.map((colFormat, i) => 
