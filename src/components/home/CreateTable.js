@@ -15,15 +15,6 @@ import {
 } from './TableFormats';
 import './CreateTable.css';
 
-// this will take two props, fields is an array of objects with names of types, 
-// with this will need to create an array of functions that can map over data row 
-// and format them for ins rton. 
-
-// the next is data, which is an array of flat old values from the json
-
-// the componenet creates rows, which are flexed divs, and inserts each functioned datum into them 
-// the width of a particular component doesnt really matter, but every row of a type should have same max width
-
 
 class CreateTable extends React.Component {
     hourly = [
@@ -43,8 +34,8 @@ class CreateTable extends React.Component {
         {func: wind, field: 'Wind'},
         {func: humidity, field: 'Humidity'}, 
     ];
-    fiveDays = json.daily.data.slice(0, 5);
-    twentyFourHours = json.hourly.data.slice(0, 10);
+    fiveDays = json.daily.data.slice(0, 12);
+    twentyFourHours = json.hourly.data.slice(0, 12);
     
     construct = () => {
         let format = this.props.type === 'hourly' ? this.hourly : this.daily;

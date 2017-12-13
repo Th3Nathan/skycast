@@ -8,19 +8,37 @@ import WeatherNow from './WeatherNow';
 import CreateTable from './CreateTable';
 
 class Home extends React.Component {
+    state = {
+        tableType: 'hourly'
+    }
 
+    setTableType = (type) => () => this.setState({tableType: type});
+    getStyle = (type) => this.state.tableType === type ? {border: '1px solid black'} : {};
     render() {
         const { loggedIn, username, queries } = this.props;
+        const { tableType } = this.state;
+        const { setTableType, getStyle } = this;
         return (
             <div className="Home">
                 <HomeHeader queries={queries} />
-                <h2>Hello</h2>
-                <h2>Hello</h2>
-                <h2>Hello</h2>
-                <h2>Hello</h2>
-                <h2>Hello</h2>
                 <WeatherNow />
-                <CreateTable type={'hourlyy'} />
+                <div className="HomeToggleTableButtonWrap">
+                    <div 
+                        style={getStyle('hourly')} 
+                        onClick={setTableType('hourly')} 
+                        className="HomeToggleTable"
+                        >
+                        Hourly 
+                    </div>
+                    <div 
+                        style={getStyle('daily')} 
+                        onClick={setTableType('daily')} 
+                        className="HomeToggleTable"
+                        >
+                        Daily
+                    </div>
+                </div>
+                <CreateTable type={tableType} />
                 <h1>Current Location is {this.props.location.name}</h1>
                 <h1>With lat and long of {this.props.location.latitude} {this.props.location.longitude}</h1>
             </div>
@@ -38,35 +56,5 @@ const mapStateToProps = state => {
         location: state.home.location,
     }
 }
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         signIn: (data) => {
-//             const {username, password} = data;
-//             const user = {username, password };
-//             return dispatch(signIn(user));
-//         },
-//         signUp: (data) => {
-//             const {username, password} = data;
-//             const user = {username, password };
-//             return dispatch(signUp(user));
-//         },
-//         updateUsername: (username) => dispatch(updateSessionFormUsername(username)),
-//         updatePassword: (password) => dispatch(updateSessionFormPassword(password)),
-//     }
-// }
-
-// const mergeProps = (stateProps, dispatchProps, ownProps) => {
-//     return {...stateProps, ...dispatchProps, ...ownProps,
-//         signIn: () => {
-//             const {username, password} = stateProps;
-//             dispatchProps.signIn({username, password});
-//         },
-//         signUp: () => {
-//             const {username, password} = stateProps;
-//             dispatchProps.signUp({username, password});
-//         },
-//     }
-//   }
 
 export default connect(mapStateToProps,)(Home);

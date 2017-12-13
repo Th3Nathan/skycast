@@ -12,23 +12,25 @@ export const time = (data) => {
     return (
       <div style={{
           display: 'flex',
-          padding: '7px 15px',
-          minWidth: '115px',
-          fontSize: '14px',
           position: 'relative',
+          width: '100px',
           justifyContent: 'space-between'}}>
-        <div>
+        <div style={{
+            margin: '-8px 0px 0px -20px',
+
+        }}>
           <b>{time}</b>
           <div style={{opacity: '0.7'}}>
             {day}
           </div>
         </div>
         <div style={{
-            width: '59%',
+            width: '50%',
             right: '-20px',
-            top: '0px',
-            position: 'absolute'
-        }}>  
+            top: '8px',
+            position: 'absolute',
+            padding: '0px',
+        }}> 
             <Skycons 
                 color='grey' 
                 icon={formatIcon} 
@@ -39,11 +41,12 @@ export const time = (data) => {
     )
 }
 
+
+
 export const description = (data) => {
     let description = data.summary;
     return (
         <div style={{
-            padding: '7px 15px',
             minWidth: '80px',
             fontSize: '16px',
             color: '#393939'
@@ -59,9 +62,6 @@ export const temperature = (data, style) => {
     let temp = data.temperature;
     return (
         <div style={{
-            padding: '7px 15px',
-            maxWidth: '125px',
-            fontSize: '14px',
             ...style,
             }}
             >
@@ -79,9 +79,6 @@ export const feels = (data, style) => {
     let temp = data.apparentTemperature;
     return (
         <div style={{
-            padding: '7px 15px',
-            maxWidth: '125px',
-            fontSize: '14px',
             color: '#999',
             }}
             >
@@ -98,12 +95,7 @@ export const feels = (data, style) => {
 export const precipitation = (data) => {
     let percent = data.precipProbability;
     return (
-        <div style={{
-            padding: '7px 15px',
-            maxWidth: '125px',
-            fontSize: '14px',
-            }}
-            >
+        <div>
             {parseInt(percent) * 100}%
         </div>
     );
@@ -112,13 +104,8 @@ export const precipitation = (data) => {
 export const humidity = (data) => {
     let percent = data.humidity;
     return (
-        <div style={{
-            padding: '7px 15px',
-            maxWidth: '125px',
-            fontSize: '14px',
-            }}
-            >
-            {parseInt(percent) * 100}%
+        <div>
+            {parseInt(percent * 100)}%
         </div>
     );
 }
@@ -146,12 +133,7 @@ export const wind = (data) => {
         }
     }
     return (
-        <div style={{
-            padding: '7px 15px',
-            maxWidth: '125px',
-            fontSize: '14px',
-            }}
-            >
+        <div>
             {Math.floor(speed)} mph {getDir(bearing)} 
         </div>
     )
@@ -166,22 +148,24 @@ export const day = (data) => {
     return (
       <div style={{
           display: 'flex',
-          padding: '7px 15px',
-          maxWidth: '125px',
-          fontSize: '14px',
           position: 'relative',
+          width: '100px',
           justifyContent: 'space-between'}}>
-        <div>
+        <div style={{
+            margin: '-8px 0px 0px -20px',
+
+        }}>
           <b>{time}</b>
           <div style={{opacity: '0.7'}}>
             {day}
           </div>
         </div>
         <div style={{
-            width: '5%',
+            width: '50%',
             right: '-20px',
-            top: '0px',
-            position: 'absolute'
+            top: '8px',
+            position: 'absolute',
+            padding: '0px',
         }}> 
             <Skycons 
                 color='grey' 
@@ -197,12 +181,7 @@ export const highLow = (data) => {
     let high = data.temperatureHigh;
     let low = data.temperatureLow;
     return (
-        <div style={{
-            padding: '7px 15px',
-            maxWidth: '125px',
-            fontSize: '14px',
-            }}
-            >
+        <div>
             <b>{high}</b><span><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"

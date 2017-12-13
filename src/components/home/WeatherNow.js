@@ -2,12 +2,12 @@ import React from 'react';
 import Moment from 'moment';
 import Skycons from 'react-skycons';
 import { connect } from 'react-redux';
+import json from '../../weather.js';
 import './WeatherNow.css';
 class WeatherNow extends React.Component {
 
     mapHoursToBackground = (hours) => {
         const colors = ['#81b4e4', '#5FA0DD', '#1b4e7e', '#091a2a'];
-        debugger
         if (hours >= 22 || hours <= 3) {
             return {background: colors[3]};
         } else if (hours >= 19 || hours <= 6) {
@@ -25,8 +25,8 @@ class WeatherNow extends React.Component {
     }
 
     render() {
-        if (!this.props.json) return null;
-        let json = this.props.json;
+        // if (!this.props.json) return null;
+        // let json = this.props.json;
         let now = new Moment(json.currently.time);
         let timeBackgroundStyle = this.mapHoursToBackground(parseInt(now.format('HH')));
         let datestring = "as of " + now.format('h:mm:ss a');
