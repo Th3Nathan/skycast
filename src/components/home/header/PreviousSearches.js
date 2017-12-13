@@ -13,7 +13,6 @@ class PreviousSearches extends React.Component {
             this.setState({listShowing: false});
         }
         return this.props.queries.map((query, idx) => {
-            debugger
             return (
                 <li onClick={action(query)} className="HistoryItem" key={idx}>
                     {query.name}

@@ -3,3 +3,15 @@
     max-width: 1200px;
     margin: 90px auto;
 }
+
+.HomeTopRow {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: 1020px;
+    justify-content: space-between;
+}
+
+.HomeTopRow > div {
+    margin: 10px auto;
+}
