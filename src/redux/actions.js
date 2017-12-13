@@ -1,17 +1,15 @@
 import * as $ from '../api';
-import {
-    UPDATE_SESSION_FORM_USERNAME,
-    UPDATE_SESSION_FORM_PASSWORD,
-    UPDATE_SESSION_FORM_ERROR,
-    RECEIVE_USER,
-} from './reducers/session-form-reducer';
 
-import {
-    SET_LOCATION
-} from './reducers/home-reducer';
+export const ADD_QUERY = 'ADD_QUERY';
+export const RECEIVE_CURRENT_WEATHER = 'RECEIVE_CURRENT_WEATHER';
+export const RECEIVE_WEATHER_HISTORY = 'RECEIVE_WEATHER_HISTORY';
+export const UPDATE_SESSION_FORM_USERNAME = 'UPDATE_SESSION_FORM_USERNAME';
+export const UPDATE_SESSION_FORM_PASSWORD = 'UPDATE_SESSION_FORM_PASSWORD';
+export const UPDATE_SESSION_FORM_ERROR = 'UPDATE_SESSION_FORM_ERROR';
+export const RECEIVE_USER = 'RECEIVE_USER';
+export const SET_LOCATION = 'SET_LOCATION';
+export const CLEAR_QUERIES = 'CLEAR_QUERIES';
 
-const ADD_QUERY = 'ADD_QUERY';
-const RECEIVE_DATA = 'RECEIVE_DATA';
 export const updateSessionFormUsername = username => {
     return {
         type: UPDATE_SESSION_FORM_USERNAME,
@@ -40,6 +38,11 @@ export const receiveUser = user => {
     };
 };
 
+export const clearQueries = () => {
+    return {
+        type: CLEAR_QUERIES
+    }
+}
 
 export const signIn = data => async dispatch => {
     try {
@@ -63,8 +66,9 @@ export const signUp = data => async dispatch => {
 
 export const logout = () => async dispatch => {
     try {
-        let response = await $.logout();
+        await $.logout();
         dispatch(receiveUser({username: null, id: null}));
+        dispatch(clearQueries());
     } catch (err) {
         console.log(err)
         return;
@@ -73,7 +77,7 @@ export const logout = () => async dispatch => {
 
 export const postQuery = query => async dispatch => {
     try {
-        let response = await $.postQuery(query);
+        await $.postQuery(query);
         dispatch(addQuery(query));
     } catch (err) {
         console.log(err)
@@ -98,18 +102,37 @@ export const addQuery = query => {
     }
 }
 
-export const receiveData = (data, query) => {
+export const receiveCurrentWeather = (data, query) => {
     return {
-        type: RECEIVE_DATA,
+        type: RECEIVE_CURRENT_WEATHER,
         data,
         query,
     };
 }
 
-export const fetchCurrentWeather = query => async dispatch => {
+export const receiveWeatherHistory = (data, query) => {
+    return {
+        type: RECEIVE_WEATHER_HISTORY,
+        data,
+        query,
+    };
+}
+
+export const fetchCurrentWeather = (query) => async dispatch => {
     try {
-        let response = await $.fetchWeather(query);
-        dispatch(receiveData(response.data, query));
+        let response = await $.fetchCurrentWeather(query);
+        dispatch(receiveCurrentWeather(response.data, query));
+    } catch (err) {
+        console.log(err)
+        return;
+    }
+}
+
+export const fetchWeatherHistory = (query) => async dispatch => {
+    try {
+        let response = await $.fetchWeatherHistory(query);
+        debugger
+        dispatch(receiveWeatherHistory(response.data, query));
     } catch (err) {
         console.log(err)
         return;

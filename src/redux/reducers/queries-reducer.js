@@ -1,18 +1,23 @@
-const RECEIVE_QUERIES = 'RECEIVE_STORIES';
 const RECEIVE_USER = 'RECEIVE_USER';
 const ADD_QUERY = 'ADD_QUERY';
+const CLEAR_QUERIES = 'CLEAR_QUERIES';
 const defaultState = {
     userQueries: [], 
 };
 
 const queriesReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case RECEIVE_QUERIES:
-        return  {...state, userQueries: action.queries};
+        case CLEAR_QUERIES: 
+        return {userQueries: []}
         case RECEIVE_USER:
-        return {...state, userQueries: action.user.queries}
+        if (action.user.queries){
+            return {...state, userQueries: action.user.queries};
+        } else {
+            return {...state, userQueries: []};
+        }
         case ADD_QUERY:
-        return {...state, userQueries: [...(state.userQueries || []), action.query]}
+        let userQueries = (state.userQueries || []).concat(action.query);
+        return {...state, userQueries}
         default:
         return {...state};
     }

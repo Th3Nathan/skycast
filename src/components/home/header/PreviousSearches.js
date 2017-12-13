@@ -4,25 +4,32 @@ import './PreviousSearches.css';
 import { setLocation, fetchCurrentWeather } from '../../../redux/actions';
 
 class PreviousSearches extends React.Component {
-    state = {listShowing: true};
+    state = {listShowing: false};
+    
     constructList = () => {
+        const {fetchCurrentWeather} = this.props;
         const action = query => () => {
-            this.props.fetchCurrentWeather(query)
+            fetchCurrentWeather(query);
             this.setState({listShowing: false});
         }
         return this.props.queries.map((query, idx) => {
-            // onClick={action(query)}
+            debugger
             return (
-                <li className="HistoryItem" key={idx}>
+                <li onClick={action(query)} className="HistoryItem" key={idx}>
                     {query.name}
                 </li>
             );
         });
     }
-    toggleList = () => this.setState({listShowing: (!this.state.listShowing)});
+    toggleList = () => {
+        if (this.props.queries.length === 0) {
+            return this.setState({listShowing: false});
+        } else {
+            return this.setState({listShowing: (!this.state.listShowing)});
+        }
+    }
 
     render() {
-        const {queries} = this.props;
         const {listShowing} = this.state;
         const style = {display: (listShowing ? 'block' : 'none')};
         return (

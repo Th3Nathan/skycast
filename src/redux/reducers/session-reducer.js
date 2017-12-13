@@ -1,6 +1,5 @@
-const RECEIVE_USER = 'RECEIVE_USER';
-const SIGN_UP = 'SIGN_UP';
-const SIGN_IN = 'SIGN_IN';
+import {RECEIVE_USER} from '../actions';
+
 const defaultState = {
     username: null,
     id: null,

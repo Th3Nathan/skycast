@@ -1,46 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import './Home.css';
+import { fetchCurrentWeather } from '../../redux/actions';
 import HomeHeader from './header/HomeHeader';
-import Skycons from 'react-skycons';
 import WeatherNow from './WeatherNow';
-import CreateTable from './CreateTable';
-
+import Table from './TableWrapper';
+import Chart from './ChartWrapper';
+import './Home.css';
 class Home extends React.Component {
-    state = {
-        tableType: 'hourly'
-    }
 
-    setTableType = (type) => () => this.setState({tableType: type});
-    getStyle = (type) => this.state.tableType === type ? {border: '1px solid black'} : {};
+    componentDidMount() {
+        const {hasInitialData, fetchCurrentWeather} = this.props;
+        if (!hasInitialData) {
+
+            // this fires when no requests have been made. the default location will be Boston
+            // further requests will be made from the header when a query is selected
+            let bostonLocation = {
+                lat: 42.3601,
+                lng: 71.0589,
+                name: 'Boston',
+            }
+            fetchCurrentWeather(bostonLocation);
+        }
+    }
     render() {
-        const { loggedIn, username, queries } = this.props;
-        const { tableType } = this.state;
-        const { setTableType, getStyle } = this;
         return (
             <div className="Home">
-                <HomeHeader />
+                <HomeHeader /> 
                 <WeatherNow />
-                <div className="HomeToggleTableButtonWrap">
-                    <div 
-                        style={getStyle('hourly')} 
-                        onClick={setTableType('hourly')} 
-                        className="HomeToggleTable"
-                        >
-                        Hourly 
-                    </div>
-                    <div 
-                        style={getStyle('daily')} 
-                        onClick={setTableType('daily')} 
-                        className="HomeToggleTable"
-                        >
-                        Daily
-                    </div>
-                </div>
-                <CreateTable type={tableType} />
-                <h1>Current Location is {this.props.location.name}</h1>
-                <h1>With lat and long of {this.props.location.latitude} {this.props.location.longitude}</h1>
+                <Table />
+                <Chart />
+                {/* <h1>Current Location is {this.props.location.name}</h1>
+                <h1>With lat and long of {this.props.location.latitude} {this.props.location.longitude}</h1> */}
             </div>
         );
     }
@@ -50,11 +40,14 @@ class Home extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: !!state.session.username, 
-        username: state.sessionForm.username,
-        queries: state.queries.userQueries || [],
-        location: state.home.location,
+        hasInitialData: !!state.weather.current,
     }
 }
 
-export default connect(mapStateToProps,)(Home);
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchCurrentWeather: (query) => dispatch(fetchCurrentWeather(query))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

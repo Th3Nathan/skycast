@@ -2,13 +2,13 @@ import { combineReducers } from "redux";
 import queries from './reducers/queries-reducer';
 import session from './reducers/session-reducer';
 import sessionForm from './reducers/session-form-reducer';
-import home from './reducers/home-reducer';
+import weather from './reducers/weather-reducer';
 
 const rootReducer = combineReducers({
   queries,
   session,
   sessionForm,
-  home,
+  weather,
 });
 
 export default rootReducer;

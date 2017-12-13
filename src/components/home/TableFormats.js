@@ -88,7 +88,7 @@ export const feels = ({apparentTemperature}, style) => {
 export const precipitation = ({precipProbability}) => {
     return (
         <div>
-            {parseInt(precipProbability) * 100}%
+            {parseInt(precipProbability, 10) * 100}%
         </div>
     );
 }
@@ -96,7 +96,7 @@ export const precipitation = ({precipProbability}) => {
 export const humidity = ({humidity}) => {
     return (
         <div>
-            {parseInt(humidity * 100)}%
+            {parseInt(humidity * 100, 10)}%
         </div>
     );
 }

@@ -87,8 +87,6 @@ const mapStateToProps = state => {
     return {
         errorMsg: state.sessionForm.error,
         loggedIn: !!state.session.username, 
-        username: state.sessionForm.username,
-        password: state.sessionForm.password,
     }
 }
 

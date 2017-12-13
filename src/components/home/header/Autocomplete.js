@@ -1,6 +1,5 @@
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { addQuery, setLocation, postQuery, fetchCurrentWeather } from '../../../redux/actions';
 import './Autocomplete.css';
@@ -21,7 +20,7 @@ class Autocomplete extends React.Component {
             } else {
                 this.props.addQuery(query);
             }
-            // this.props.fetchCurrentWeather(query);
+            this.props.fetchCurrentWeather(query);
             console.log('Success', latLng);
         } catch(err) {
             console.error('Error', err);
