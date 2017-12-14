@@ -2,9 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 import HistoryChart from './HistoryChart'
 import './ChartWrapper.css';
+
 class ChartWrapper extends React.Component {
-    // type 'temperature' | 'humidity';
-    // time 'weekly' | 'monthly';
     state = {type: 'temperature'}
 
     setType = (type) => () => this.setState({type});  

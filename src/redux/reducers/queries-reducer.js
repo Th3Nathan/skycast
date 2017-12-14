@@ -8,18 +8,22 @@ const defaultState = {
 const queriesReducer = (state = defaultState, action) => {
     switch (action.type) {
         case CLEAR_QUERIES: 
-        return {userQueries: []}
+            return {userQueries: []}
+
         case RECEIVE_USER:
-        if (action.user.queries){
-            return {...state, userQueries: action.user.queries};
-        } else {
-            return {...state, userQueries: []};
-        }
+            if (action.user.queries){
+                return {...state, userQueries: action.user.queries};
+            } else {
+                // empty queries when user logs out
+                return {...state, userQueries: []};
+            }
+
         case ADD_QUERY:
-        let userQueries = (state.userQueries || []).concat(action.query);
-        return {...state, userQueries}
+            let userQueries = (state.userQueries || []).concat(action.query);
+            return {...state, userQueries}
+
         default:
-        return {...state};
+            return {...state};
     }
 };
 

@@ -8,10 +8,11 @@ const sessionFormReducer = (state = defaultState, action) => {
     let newState = {...state};
     switch (action.type) {
         case RECEIVE_USER: 
-        newState.error = action.user.error || '';
-        return newState;
+            newState.error = action.user.error || '';
+            return newState;
+
         default:
-        return newState;
+            return newState;
     }
 };
 

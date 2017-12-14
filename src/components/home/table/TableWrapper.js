@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CreateTable from './CreateTable';
 import './TableWrapper.css';
+
 class TableWrapper extends React.Component {
     state = {tableType: 'hourly'}
     setTableType = (type) => () => this.setState({tableType: type});

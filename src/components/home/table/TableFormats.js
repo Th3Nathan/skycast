@@ -15,16 +15,16 @@ export const title = (type) => ({time, icon}) => {
         day = now.format('MM/DD').toUpperCase();
     }
     return (
-      <div style={{
-          display: 'flex',
-          position: 'relative',
-          width: '100px',
-          justifyContent: 'space-between'}}>
+       <div style={{
+            display: 'flex',
+            position: 'relative',
+            width: '100px',
+            justifyContent: 'space-between'}}>
         <div style={{margin: '-8px 0px 0px -20px'}}>
-          <b>{timeDisplay}</b>
-          <div style={{opacity: '0.7'}}>
-            {day}
-          </div>
+            <b>{timeDisplay}</b>
+            <div style={{opacity: '0.7'}}>
+                {day}
+            </div>
         </div>
         <div style={{
             width: '50%',
@@ -88,7 +88,7 @@ export const feels = ({apparentTemperature}, style) => {
 export const precipitation = ({precipProbability}) => {
     return (
         <div>
-            {parseInt(precipProbability, 10) * 100}%
+            {Math.floor(precipProbability * 100)}%
         </div>
     );
 }
@@ -96,7 +96,7 @@ export const precipitation = ({precipProbability}) => {
 export const humidity = ({humidity}) => {
     return (
         <div>
-            {parseInt(humidity * 100, 10)}%
+            {Math.floor(humidity * 100)}%
         </div>
     );
 }

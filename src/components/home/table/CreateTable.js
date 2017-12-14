@@ -1,5 +1,4 @@
 import React from 'react';
-// import json from '../../weather.js';
 import {
     title,
     description,
@@ -11,7 +10,6 @@ import {
     highLow
 } from './TableFormats';
 import './CreateTable.css';
-
 
 class CreateTable extends React.Component {
     hourly = [

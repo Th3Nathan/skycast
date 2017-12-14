@@ -119,6 +119,7 @@ export const receiveWeatherHistory = (data, query) => {
 }
 
 export const fetchCurrentWeather = (query) => async dispatch => {
+    debugger
     try {
         let response = await $.fetchCurrentWeather(query);
         dispatch(receiveCurrentWeather(response.data, query));
@@ -128,10 +129,9 @@ export const fetchCurrentWeather = (query) => async dispatch => {
     }
 }
 
-export const fetchWeatherHistory = (query) => async dispatch => {
+export const fetchWeatherHistory = (query, time) => async dispatch => {
     try {
-        let response = await $.fetchWeatherHistory(query);
-        debugger
+        let response = await $.fetchWeatherHistory(query, time);
         dispatch(receiveWeatherHistory(response.data, query));
     } catch (err) {
         console.log(err)

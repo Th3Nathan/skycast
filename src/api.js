@@ -2,7 +2,9 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 const localUrl = "http://localhost:8080/";
-const url = localUrl;
+const herokuUrl = "https://skycast-server.herokuapp.com/";
+
+const url = process.env.NODE_ENV === 'production' ? herokuUrl : localUrl;
 
 const $ = axios.create({withCredentials: true});
 
@@ -26,6 +28,6 @@ export const fetchCurrentWeather = (latLng) => {
     return $.post(url + 'weather', (queryString.stringify(latLng)));
 };
 
-export const fetchWeatherHistory = (latLng) => {
-    return $.post(url + 'history', (queryString.stringify(latLng)));
+export const fetchWeatherHistory = (latLng, time) => {
+    return $.post(url + 'history', (queryString.stringify({...latLng, time})));
 }
