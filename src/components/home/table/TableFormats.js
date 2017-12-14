@@ -123,7 +123,7 @@ const getDir = (bearing) => {
 
 export const wind = ({windSpeed, windBearing}) => {
     return (
-        <div>
+        <div style={{width: '73px'}}>
             {Math.floor(windSpeed)} mph {getDir(windBearing)} 
         </div>
     )
@@ -132,7 +132,7 @@ export const wind = ({windSpeed, windBearing}) => {
 export const highLow = ({temperatureHigh, temperatureLow}) => {
     return (
         <div>
-            <b>{temperatureHigh}</b>
+            <b>{Math.floor(temperatureHigh)}</b>
             <span><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
@@ -140,7 +140,7 @@ export const highLow = ({temperatureHigh, temperatureLow}) => {
                 /> 
             </span>
             &nbsp;/
-            <b> {temperatureLow}</b>
+            <b> {Math.floor(temperatureLow)}</b>
             <span><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"

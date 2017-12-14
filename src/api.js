@@ -4,7 +4,7 @@ import queryString from 'query-string';
 const localUrl = "http://localhost:8080/";
 const herokuUrl = "http://skycast-server.herokuapp.com/";
 
-const url = herokuUrl;
+const url = localUrl;
 
 const $ = axios.create({withCredentials: true});
 
