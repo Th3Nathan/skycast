@@ -2,7 +2,7 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 const localUrl = "http://localhost:8080/";
-const herokuUrl = "https://skycast-server.herokuapp.com/";
+const herokuUrl = "http://skycast-server.herokuapp.com/";
 
 const url = herokuUrl;
 
