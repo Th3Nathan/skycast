@@ -8,10 +8,19 @@ import './Session.css';
 import {
     signIn, 
     signUp, 
+    updateSessionFormError,
 } from '../../redux/actions';
 
 class Session extends React.Component {
     state = {username: '', password: ''};
+
+    componentWillReceiveProps(nextProps){
+        // clear forms and error if user switches from login to signin
+        if (this.props.location.pathname !== nextProps.location.pathname){
+            this.setState({username: '', password: ''});
+            this.props.clearError();
+        }
+    }
 
     getDisplay = () => {
         const url = this.props.location.pathname
@@ -98,6 +107,9 @@ const mapDispatchToProps = dispatch => {
         signUp: (data) => {
             return dispatch(signUp(data));
         },
+        clearError: () => {
+            return dispatch(updateSessionFormError(''))
+        }
     }
 }
 

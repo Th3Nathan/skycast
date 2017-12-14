@@ -34,7 +34,7 @@ class Autocomplete extends React.Component {
             autocompleteContainer: { width: '224px', margin: '0', padding: '0', border: 'none' },
             autocompleteItem: { width: '224px', color: 'black', fontSize: '15px' },
             autocompleteItemActive: { color: '#3437d4' },
-            googleLogoContainer: {display: 'none'}
+            // googleLogoContainer: {display: 'none'}
         }
     
         const inputProps = {

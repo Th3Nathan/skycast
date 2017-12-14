@@ -10,6 +10,7 @@ const defaultState = {
     daily: [],
     hourly: [],
     timezone: null,
+    showingHistory: false,
 };
 
 const weatherReducer = (state = defaultState, action) => {
@@ -24,6 +25,7 @@ const weatherReducer = (state = defaultState, action) => {
                 daily: action.data.daily.data,
                 hourly: action.data.hourly.data,
                 timezone: action.data.timezone,
+                showingHistory: false,
             }
 
         case RECEIVE_WEATHER_HISTORY: 
@@ -37,6 +39,7 @@ const weatherReducer = (state = defaultState, action) => {
                 current, 
                 location: action.query,
                 timezone: action.data.timezone,
+                showingHistory: true,
             };
         
         default:

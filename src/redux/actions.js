@@ -119,7 +119,6 @@ export const receiveWeatherHistory = (data, query) => {
 }
 
 export const fetchCurrentWeather = (query) => async dispatch => {
-    debugger
     try {
         let response = await $.fetchCurrentWeather(query);
         dispatch(receiveCurrentWeather(response.data, query));

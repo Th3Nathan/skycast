@@ -22,8 +22,16 @@
     cursor: pointer;
 }
 
+.HistoryListWrap h2 {
+    font-weight: 100;
+    font-size: 18px;
+    margin-bottom: -5px;
+    letter-spacing: .5px;
+}
+
+
 .HistoryList {
-    background: #9ED0E6;
+    background: #c9e0e3;
     list-style-type: none;
     border-radius: 4px;
     top: 23px;
@@ -34,13 +42,16 @@
 }
 
 .HistoryItem {
-    color: white;
+    color: rgb(116, 115, 115);
     font-size: 16px;
     font-weight: bold;
     padding: 7px 15px;
+    font-weight: 100;
+    letter-spacing: .5px;
 }
 
 .HistoryItem:hover {
-    background: black;
-    border-radius: 10px;
+    color: #2c182d;
+    background: #5da3ac;
+    border-radius: 4px;
 }

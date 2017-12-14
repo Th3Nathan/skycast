@@ -1,10 +1,10 @@
 import React from 'react';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import Skycons from 'react-skycons';
 
 export const title = (type) => ({time, icon}) => {
     let formatIcon = icon.toUpperCase().split('-').join('_');
-    let now = moment(time, 'X');
+    let now = moment(time, 'X').tz('US/Eastern');
     let timeDisplay;
     let day;
     if (type === 'hourly') {
@@ -88,7 +88,7 @@ export const feels = ({apparentTemperature}, style) => {
 export const precipitation = ({precipProbability}) => {
     return (
         <div>
-            {Math.floor(precipProbability * 100)}%
+            {Math.floor(precipProbability * 100) || 0}%
         </div>
     );
 }
@@ -96,7 +96,7 @@ export const precipitation = ({precipProbability}) => {
 export const humidity = ({humidity}) => {
     return (
         <div>
-            {Math.floor(humidity * 100)}%
+            {Math.floor(humidity * 100) || 0}%
         </div>
     );
 }
@@ -124,15 +124,16 @@ const getDir = (bearing) => {
 export const wind = ({windSpeed, windBearing}) => {
     return (
         <div style={{width: '73px'}}>
-            {Math.floor(windSpeed)} mph {getDir(windBearing)} 
+            {Math.floor(windSpeed) || 0} mph {getDir(windBearing)} 
         </div>
     )
 }
 
-export const highLow = ({temperatureHigh, temperatureLow}) => {
+export const highLow = (props) => {
+    debugger
     return (
         <div>
-            <b>{Math.floor(temperatureHigh)}</b>
+            <b>{Math.floor(props.temperatureHigh) || 0}</b>
             <span><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
@@ -140,7 +141,7 @@ export const highLow = ({temperatureHigh, temperatureLow}) => {
                 /> 
             </span>
             &nbsp;/
-            <b> {Math.floor(temperatureLow)}</b>
+            <b> {Math.floor(props.temperatureLow) || 0}</b>
             <span><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"

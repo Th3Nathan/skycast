@@ -15,3 +15,20 @@
 .HomeTopRow > div {
     margin: 10px auto;
 }
+
+.footer {
+    height: 75px;
+    width: 101%;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    left: -9px;
+    box-sizing: border-box;
+    right: 0;
+    background: #86bac1;
+    bottom: -8px;
+}
+
+img {
+    width: 100px;
+}

@@ -25,8 +25,7 @@ class WeatherNow extends React.Component {
     render() {
         if (!this.props.current) return null;
         const {current, name, daily, timezone} = this.props;
-        // time zones are delayed by one call, bug with api, very annoying
-        // should file when I have time
+        // timezone doesnt match response location
         let now = moment(current.time, 'X').tz('US/Eastern');
         let timeBackgroundStyle = this.mapHoursToBackground(parseInt(now.format('HH'), 10));
         let datestring = "as of " + now.format('MM/DD hh:mm a')

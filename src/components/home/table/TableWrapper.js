@@ -6,13 +6,33 @@ import './TableWrapper.css';
 class TableWrapper extends React.Component {
     state = {tableType: 'hourly'}
     setTableType = (type) => () => this.setState({tableType: type});
-    getStyle = (type) => this.state.tableType === type ? {border: '1px solid black'} : {};
+    getStyle = (type) => this.state.tableType === type ? {backgroundColor: '#5da3ac', color: 'white'} : {};
+
+    getTableData = () => {
+        const {tableType} = this.state;
+        const {showingHistory, daily, hourly} = this.props;
+        let data;
+        if (tableType === 'daily') {
+            if (showingHistory) {
+                data = daily.slice(1);
+            } else {
+                data = daily;
+            }
+        } else {
+            if (showingHistory) {
+                data = this.props.hourly.slice(11); 
+            } else {
+                data = this.props.hourly.slice(1, 12);
+            }
+        }       
+        return data;
+    }
 
     render() {
         if (this.props.daily.length === 0) return null;
         const { tableType } = this.state;
-        const { daily, hourly } = this.props;
-        const { setTableType, getStyle } = this;
+        const { setTableType, getStyle, getTableData } = this;
+        const data = getTableData();
         return (
             <div className="TableWrapper">
                 <div className="TableButtons">
@@ -34,9 +54,8 @@ class TableWrapper extends React.Component {
                     </div>
                 </div>
                 <CreateTable
-                    hourly={hourly}
-                    daily={daily}
                     type={tableType}
+                    data={data}
                 />
             </div>
         );
@@ -47,6 +66,7 @@ const mapStateToProps = state => {
     return {
         daily: state.weather.daily,
         hourly: state.weather.hourly,
+        showingHistory: state.weather.showingHistory,
     }
 }
 

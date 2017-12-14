@@ -27,7 +27,7 @@ class Calendar extends React.Component {
                     height={240}
                     onSelect={handleSelect}
                     theme={{
-                        selectionColor: '#00B2CA',
+                        selectionColor: '#86bac1',
                         textColor: {
                         default: '#333',
                         active: '#FFF'

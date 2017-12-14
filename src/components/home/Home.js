@@ -9,11 +9,9 @@ import Calendar from './calendar/Calendar';
 import './Home.css';
 
 class Home extends React.Component {
-
     componentDidMount() {
         const {hasInitialData, fetchCurrentWeather} = this.props;
         if (!hasInitialData) {
-
             // this fires when no requests have been made. the default location will be Boston
             // further requests will be made from the header when a query is selected
             const bostonLocation = {
@@ -26,15 +24,23 @@ class Home extends React.Component {
     }
 
     render() {
+        const {hasInitialData} = this.props;
         return (
-            <div className="Home">
-                <HomeHeader /> 
-                <div className="HomeTopRow">
-                    <WeatherNow />
-                    <Calendar />
+            <div>
+                <div className="Home">
+                    <HomeHeader /> 
+                    <div className="HomeTopRow">
+                        <WeatherNow />
+                        <Calendar />
+                    </div>
+                    <Table />
+                    <Chart />
                 </div>
-                <Table />
-                <Chart />
+                {hasInitialData ? 
+                    <div className="footer">
+                        <a href="https://darksky.net/poweredby/"><img className="Darksky" src="https://darksky.net/dev/img/attribution/poweredby.png" /></a>
+                    </div>
+                : null }
             </div>
         );
     }

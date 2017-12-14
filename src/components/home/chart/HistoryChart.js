@@ -2,7 +2,7 @@
 import { Chart } from 'react-google-charts';
 import React from 'react';
 import moment from 'moment';
-
+import './HistoryChart.css';
 class HistoryChart extends React.Component {
     getData = () => {
         if (this.props.type === 'temperature') {
@@ -13,8 +13,8 @@ class HistoryChart extends React.Component {
     }
     
     temperatureRows = () => {
-        const {daily} = this.props;
-        return daily.map(day => {
+        const {data} = this.props;
+        return data.map(day => {
             let date = moment(day.time, 'X').format('MM/DD');
             let low = day.temperatureLow;
             let high = day.temperatureHigh;
@@ -23,8 +23,8 @@ class HistoryChart extends React.Component {
     }
 
     humidityRows = () => {
-        const {daily} = this.props;
-        return daily.map(day => {
+        const {data} = this.props;
+        return data.map(day => {
             let date = moment(day.time, 'X').format('MM/DD');
             let humidity = day.humidity;
             return [date, humidity];  
@@ -56,7 +56,7 @@ class HistoryChart extends React.Component {
                 data={this.getData()}
                 options={this.getOptions()}
                 graph_id="LineChart"
-                width="780px"
+                width="790px"
                 height="300px"
                 legend_toggle
             />

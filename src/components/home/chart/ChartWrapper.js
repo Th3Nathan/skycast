@@ -17,15 +17,20 @@ class ChartWrapper extends React.Component {
         }
     } 
     
+    getData = () => {
+        const {showingHistory, daily} = this.props;
+        return showingHistory ? daily.slice(1) : daily;
+    }
+
     render() {
         if (this.props.daily.length === 0) return null;
         const {type} = this.state;
         const {getStyle, setType} = this;
-        const {daily} = this.props;
+        const data = this.getData(); // daily only
         return  (
             <div className="ChartWrapper">
                 <HistoryChart
-                    daily={daily}
+                    data={data}
                     type={type}
                 />
                 <div className="ChartButtons">
@@ -54,6 +59,7 @@ class ChartWrapper extends React.Component {
 const mapStateToProps = state => {
     return {
         daily: state.weather.daily,
+        showingHistory: state.weather.showingHistory,
     }
 }
 

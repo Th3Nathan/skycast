@@ -30,10 +30,9 @@ class CreateTable extends React.Component {
         {func: humidity, field: 'Humidity'}, 
     ];
     
-    construct = () => {
+    render() {
         let format = this.props.type === 'hourly' ? this.hourly : this.daily;
-        let data = this.props.type === 'hourly' ? this.props.hourly.slice(0, 12) : this.props.daily;
-        debugger
+        const {data} = this.props;
         let header = (
             <tr>
                 {format.map((colFormat, i) => 
@@ -63,13 +62,6 @@ class CreateTable extends React.Component {
                 </tbody>
             </table>
         )     
-    }
-    render() {
-        return (
-            <div>
-                {this.construct()}
-            </div>
-        )
     }
 }
 

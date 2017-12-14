@@ -16,7 +16,7 @@ th {
 }
 
 tr, td {
-    background: #9ED0E6;
+    background: #EDEDED;
     box-sizing: border-box;
 
    
@@ -28,7 +28,7 @@ td div:first-child{
 }
 
 tr {
-    border-bottom: 2px solid #00B2CA;
+    border-bottom: 2px solid #86bac1;
 }
 
 tr:last-of-type {
