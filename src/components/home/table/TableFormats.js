@@ -59,8 +59,8 @@ export const description = ({summary}) => {
 export const temperature = ({temperature}, style) => {
     return (
         <div>
-            <b>{temperature}</b>
-            <span><i 
+            <b>{Math.floor(temperature) || 0}</b>
+            <span className="TableFCircle"><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
                 style={{position: 'relative'}}
@@ -74,8 +74,8 @@ export const feels = ({apparentTemperature}, style) => {
     return (
         <div style={{color: '#999'}}
             >
-            <b>{apparentTemperature}</b>
-            <span><i 
+            <b>{Math.floor(apparentTemperature) || 0}</b>
+            <span className="TableFCircle"><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
                 style={{position: 'relative'}}
@@ -133,7 +133,7 @@ export const highLow = (props) => {
     return (
         <div>
             <b>{Math.floor(props.temperatureHigh) || 0}</b>
-            <span><i 
+            <span className="TableFCircle"><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
                 style={{position: 'relative'}}
@@ -141,7 +141,7 @@ export const highLow = (props) => {
             </span>
             &nbsp;/
             <b> {Math.floor(props.temperatureLow) || 0}</b>
-            <span><i 
+            <span className="TableFCircle"><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
                 style={{position: 'relative'}}

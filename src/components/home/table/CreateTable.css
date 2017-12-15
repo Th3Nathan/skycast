@@ -34,3 +34,10 @@ tr {
 tr:last-of-type {
     border-bottom: none;
 }
+
+.TableFCircle {
+    font-size: 7px;
+    position: relative;
+    top: -5px;
+    right: -2px;  
+}

@@ -15,7 +15,7 @@
 }
 
 .WeatherNowStats {
-    width: 140px;
+    width: 146px;
     color: #2c182d;
     background: #EDEDED;
     margin-left: 10px;
@@ -106,6 +106,13 @@
 }
 
 .WeatherNowBoxStats h4 span i {
+    font-size: 7px;
+    position: relative;
+    top: -6px;
+    right: -2px;
+}
+
+.WeatherNowStatsItemData span i {
     font-size: 7px;
     position: relative;
     top: -6px;
