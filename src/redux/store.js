@@ -9,8 +9,6 @@ if (process.env.NODE_ENV !== 'production') {
     middlewares.push(createLogger());
 }
 
-// preloaded state can be what's read from local storage?
-
 const configureStore = (preloadedState = {}) => {
     return createStore(
         rootReducer,

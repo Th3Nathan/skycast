@@ -10,7 +10,6 @@ class Calendar extends React.Component {
         const {fetchCurrentWeather, fetchWeatherHistory, location} = this.props;
         let time = moment(e);
         let now = moment();
-        debugger
         if (time.format('MMDDYYYY') === now.format('MMDDYYYY')) {
             fetchCurrentWeather(location);
         } else {

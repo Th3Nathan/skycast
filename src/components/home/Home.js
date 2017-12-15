@@ -38,7 +38,13 @@ class Home extends React.Component {
                 </div>
                 {hasInitialData ? 
                     <div className="footer">
-                        <a href="https://darksky.net/poweredby/"><img className="Darksky" src="https://darksky.net/dev/img/attribution/poweredby.png" /></a>
+                        <a href="https://darksky.net/poweredby/">
+                            <img 
+                                className="Darksky" 
+                                alt="Powered by Darksky"
+                                src="https://darksky.net/dev/img/attribution/poweredby.png" 
+                            />
+                        </a>
                     </div>
                 : null }
             </div>

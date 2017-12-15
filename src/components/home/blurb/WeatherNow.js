@@ -24,7 +24,7 @@ class WeatherNow extends React.Component {
 
     render() {
         if (!this.props.current) return null;
-        const {current, name, daily, timezone} = this.props;
+        const {current, name, daily} = this.props;
         // timezone doesnt match response location
         let now = moment(current.time, 'X').tz('US/Eastern');
         let timeBackgroundStyle = this.mapHoursToBackground(parseInt(now.format('HH'), 10));

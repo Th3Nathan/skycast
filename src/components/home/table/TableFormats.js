@@ -130,7 +130,6 @@ export const wind = ({windSpeed, windBearing}) => {
 }
 
 export const highLow = (props) => {
-    debugger
     return (
         <div>
             <b>{Math.floor(props.temperatureHigh) || 0}</b>

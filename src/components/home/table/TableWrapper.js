@@ -20,9 +20,9 @@ class TableWrapper extends React.Component {
             }
         } else {
             if (showingHistory) {
-                data = this.props.hourly.slice(11); 
+                data = hourly.slice(11); 
             } else {
-                data = this.props.hourly.slice(1, 12);
+                data = hourly.slice(1, 12);
             }
         }       
         return data;

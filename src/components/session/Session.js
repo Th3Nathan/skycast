@@ -68,7 +68,7 @@ class Session extends React.Component {
                         />
                         <div className="SessionMainLabel"><b>Password</b></div>
                         <input 
-                            placeholder="Display name" 
+                            placeholder="Password" 
                             name="password"
                             type="password" 
                             value={password}
