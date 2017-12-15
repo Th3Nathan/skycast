@@ -17,6 +17,14 @@ class Calendar extends React.Component {
         }
     }
 
+    componentWillReceiveProps(newProps) {
+        const {onHistory} = this.props;
+        // makes calender reselect current day if app loads current forecast
+        if (!onHistory) {
+            this.forceUpdate()
+        }
+    }
+
     render (){
         const {handleSelect} = this;
         return !this.props.hasInitialData ? null : (
@@ -53,6 +61,7 @@ const mapStateToProps = state => {
     return {
         location: state.weather.location,
         hasInitialData: !!state.weather.current,
+        onHistory: state.weather.onHistory,
     }
 }
 

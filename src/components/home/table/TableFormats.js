@@ -59,7 +59,7 @@ export const description = ({summary}) => {
 export const temperature = ({temperature}, style) => {
     return (
         <div>
-            <b>{Math.floor(temperature) || 0}</b>
+            <b>{Math.round(temperature) || 0}</b>
             <span className="TableFCircle"><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
@@ -74,7 +74,7 @@ export const feels = ({apparentTemperature}, style) => {
     return (
         <div style={{color: '#999'}}
             >
-            <b>{Math.floor(apparentTemperature) || 0}</b>
+            <b>{Math.round(apparentTemperature) || 0}</b>
             <span className="TableFCircle"><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
@@ -88,7 +88,7 @@ export const feels = ({apparentTemperature}, style) => {
 export const precipitation = ({precipProbability}) => {
     return (
         <div>
-            {Math.floor(precipProbability * 100) || 0}%
+            {Math.round(precipProbability * 100) || 0}%
         </div>
     );
 }
@@ -96,7 +96,7 @@ export const precipitation = ({precipProbability}) => {
 export const humidity = ({humidity}) => {
     return (
         <div>
-            {Math.floor(humidity * 100) || 0}%
+            {Math.round(humidity * 100) || 0}%
         </div>
     );
 }
@@ -124,7 +124,7 @@ const getDir = (bearing) => {
 export const wind = ({windSpeed, windBearing}) => {
     return (
         <div style={{width: '73px'}}>
-            {Math.floor(windSpeed) || 0} mph {getDir(windBearing)} 
+            {Math.round(windSpeed) || 0} mph {getDir(windBearing)} 
         </div>
     )
 }
@@ -132,7 +132,7 @@ export const wind = ({windSpeed, windBearing}) => {
 export const highLow = (props) => {
     return (
         <div>
-            <b>{Math.floor(props.temperatureHigh) || 0}</b>
+            <b>{Math.round(props.temperatureHigh) || 0}</b>
             <span className="TableFCircle"><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
@@ -140,7 +140,7 @@ export const highLow = (props) => {
                 /> 
             </span>
             &nbsp;/
-            <b> {Math.floor(props.temperatureLow) || 0}</b>
+            <b> {Math.round(props.temperatureLow) || 0}</b>
             <span className="TableFCircle"><i 
                 className="WeatherNowBoxStatsI fa fa-circle-o" 
                 aria-hidden="true"
