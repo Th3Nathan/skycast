@@ -3,9 +3,10 @@
 SkyCast is an app for searching and displaying the forecasted and historic weather for selected locations. 
 
 Hosted on Heroku: [HERE](http://nathanskycast.herokuapp.com/#/)
+The frontend and backend are hosted seperately on Heroku, so the app will take 30-40 seconds to load if it has not been accessed within the past 30 minutes.
 
-  - Built with React/Redux
-  - Hooks into a backend built with the Node Express framework for authentication, storing search histories, and making weather api requests 
+  - Built with a React/Redux frontend
+  - Hooks into a backend built with the Express JavaScript framework for authentication, storing search histories, and making weather api requests 
   - Uses Darksky API for weather information and Google Maps API for location suggestions
   - Uses ES7 JavaScript syntax to make code more readable, especially for asynchronous code (async / await)
 
