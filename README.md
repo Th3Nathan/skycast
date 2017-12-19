@@ -3,7 +3,7 @@
 SkyCast is an app for searching and displaying the forecasted and historic weather for selected locations. 
 
 Hosted on Heroku: [HERE](http://nathanskycast.herokuapp.com/#/)
-The frontend and backend are hosted seperately on Heroku, so the app will take 30-40 seconds to load if it has not been accessed within the past 30 minutes.
+The frontend and backend are hosted seperately on Heroku's free plan, so the app will take 30-40 seconds to load if it has not been accessed within the past 30 minutes. (15 seconds for the frontend, 15 seconds for the backend)
 
   - Built with a React/Redux frontend
   - Hooks into a backend built with the Express JavaScript framework for authentication, storing search histories, and making weather api requests 
